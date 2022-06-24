@@ -19,9 +19,20 @@ function sendData() {
             alert(data);
         }
     });
+
+    document.getElementById("first-name").value = "";
+    document.getElementById("last-name").value = "";
+    document.getElementById("telephone").value = null;
+    document.getElementById("IIN").value = null;
+    document.getElementById("email-address").value = "";
+    document.getElementById("date").value = null;
+    document.getElementById("street-adress").value = "";
+
+    $('#modal').toggleClass('hidden');
+
 }
 
-document.getElementById("button").onclick = function(e){
-    document.getElementById("first-name").value = "";
-}
+
+
+
 
