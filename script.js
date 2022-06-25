@@ -1,3 +1,8 @@
+
+$(document).ready(function () {
+    GetSelect()
+});
+
 function sendData() {
     let name = document.getElementById('first-name').value
     let lastName = document.getElementById('last-name').value
@@ -20,6 +25,7 @@ function sendData() {
         }
     });
 
+
     document.getElementById("first-name").value = "";
     document.getElementById("last-name").value = "";
     document.getElementById("telephone").value = null;
@@ -32,6 +38,25 @@ function sendData() {
 
 }
 
+function GetSelect() {
+    $.ajax({
+        type: "GET",
+        url: "getData.php",
+        success: function (response) {
+            let data = JSON.parse(response);
+            let element = document.getElementById("getData");
+            for (let i in data){
+                let row = `<tr>`
+                for(let j in data[i]){
+                    row += `<td>${data[i][j]}</td>`
+                }
+                row += `</tr>`
+                element.insertAdjacentHTML('beforeend', row)
+            }
+        }
+    });
+
+}
 
 
 

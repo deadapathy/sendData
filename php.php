@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 
-$getData = $_POST['array'];
+$sendData = $_POST['array'];
 
 $ip = "localhost";
 $userName = "root";
@@ -9,7 +9,7 @@ $dbName = "test1";
 $pass = "root";
    
 $dbconn = mysqli_connect($ip, $userName, $pass, $dbName) or die("Unable to connect to DB");
-foreach($getData as $element){
+foreach($sendData as $element){
     $sql = "INSERT INTO `form` (`name`, `lastName`, `birthday`, `IIN`, `telephone`, `email`, `adress`) 
     values ('$element[0]', '$element[1]', '$element[2]', '$element[3]', '$element[4]', '$element[5]', '$element[6]')";
     
@@ -17,8 +17,8 @@ foreach($getData as $element){
     echo mysqli_error($dbconn);
 }
 
-if ($result) {
-    echo "Информация занесена в базу данных";
-}
+
+
+
 
 ?>
