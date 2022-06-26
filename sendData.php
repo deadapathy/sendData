@@ -18,7 +18,4 @@ foreach($sendData as $element){
 }
 
 
-
-
-
 ?>

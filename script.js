@@ -15,7 +15,7 @@ function sendData() {
     let array = [[name, lastName, date, IIN, telephone, email, adress]];
 
     $.ajax({
-        url: '/php.php',
+        url: '/sendData.php',
         method: 'post',
         dataType: 'json',
         data: { array: array },
@@ -45,19 +45,33 @@ function GetSelect() {
         success: function (response) {
             let data = JSON.parse(response);
             let element = document.getElementById("getData");
-            for (let i in data){
+            for (let i in data) {
                 let row = `<tr>`
-                for(let j in data[i]){
+                for (let j in data[i]) {
                     row += `<td>${data[i][j]}</td>`
                 }
                 row += `</tr>`
                 element.insertAdjacentHTML('beforeend', row)
+
             }
+            select();
         }
     });
-
 }
 
 
+function select() {
+    $(document).ready(function () {
+        $('.table tr').hover(function () {
+            $(this).addClass('hover');
+        }, function () {
+            $(this).removeClass('hover');
+        });
 
+        $('.table tr').click(function () {
+            $('.table tr').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+}
 
