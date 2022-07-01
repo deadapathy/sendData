@@ -58,6 +58,29 @@ function GetSelect() {
     });
 }
 
+function update() {
+    let name = document.getElementById('first-name').value
+    let lastName = document.getElementById('last-name').value
+    let telephone = document.getElementById('telephone').value
+    let IIN = document.getElementById('IIN').value
+    let email = document.getElementById('email-address').value
+    let date = document.getElementById('date').value
+    let adress = document.getElementById('street-adress').value
+
+    let array = [[name, lastName, date, IIN, telephone, email, adress]];
+    $.ajax({
+
+        url: 'update.php',
+        method: 'post',
+        dataType: 'json',
+        data: { array: array },
+
+        success: function (data) {
+            alert(data);
+        }
+    });
+}
+
 
 function select() {
     $(document).ready(function () {
@@ -69,7 +92,7 @@ function select() {
         $('.table tr').click(function () {
             $('.table tr').removeClass('active');
             $(this).addClass('active');
-            
+
             document.getElementById("first-name").value = this.cells[1].innerHTML;
             document.getElementById("last-name").value = this.cells[2].innerHTML;
             document.getElementById("date").value = this.cells[3].innerHTML;
