@@ -52,7 +52,6 @@ function GetSelect() {
                 }
                 row += `</tr>`
                 element.insertAdjacentHTML('beforeend', row)
-
             }
             select();
         }
@@ -67,11 +66,20 @@ function select() {
         }, function () {
             $(this).removeClass('hover');
         });
-
         $('.table tr').click(function () {
             $('.table tr').removeClass('active');
             $(this).addClass('active');
+            
+            document.getElementById("first-name").value = this.cells[1].innerHTML;
+            document.getElementById("last-name").value = this.cells[2].innerHTML;
+            document.getElementById("date").value = this.cells[3].innerHTML;
+            document.getElementById("IIN").value = this.cells[4].innerHTML;
+            document.getElementById("telephone").value = this.cells[5].innerHTML;
+            document.getElementById("email-address").value = this.cells[6].innerHTML;
+            document.getElementById("street-adress").value = this.cells[7].innerHTML;
         });
     });
 }
+
+
 
