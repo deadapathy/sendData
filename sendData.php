@@ -7,7 +7,7 @@ $ip = "localhost";
 $userName = "root";
 $dbName = "test1";
 $pass = "root";
-   
+
 $dbconn = mysqli_connect($ip, $userName, $pass, $dbName) or die("Unable to connect to DB");
 foreach($sendData as $element){
     $sql = "INSERT INTO `form` (`name`, `lastName`, `birthday`, `IIN`, `telephone`, `email`, `adress`) 

@@ -1,4 +1,5 @@
 
+var id;
 $(document).ready(function () {
     GetSelect()
 });
@@ -25,18 +26,13 @@ function sendData() {
         }
     });
 
-
-    document.getElementById("first-name").value = "";
-    document.getElementById("last-name").value = "";
-    document.getElementById("telephone").value = null;
-    document.getElementById("IIN").value = null;
-    document.getElementById("email-address").value = "";
-    document.getElementById("date").value = null;
-    document.getElementById("street-adress").value = "";
-
+    clear();
     $('#modal').toggleClass('hidden');
 
 }
+
+
+
 
 function GetSelect() {
     $.ajax({
@@ -58,6 +54,8 @@ function GetSelect() {
     });
 }
 
+
+
 function update() {
     let name = document.getElementById('first-name').value
     let lastName = document.getElementById('last-name').value
@@ -67,18 +65,25 @@ function update() {
     let date = document.getElementById('date').value
     let adress = document.getElementById('street-adress').value
 
-    let array = [[name, lastName, date, IIN, telephone, email, adress]];
-    $.ajax({
+    let array = [[name, lastName, date, IIN, telephone, email, adress, id]];
 
+    $.ajax({
         url: 'update.php',
         method: 'post',
         dataType: 'json',
-        data: { array: array },
+        data: {
+            array: array,
+        },
 
         success: function (data) {
             alert(data);
         }
     });
+
+    clear();
+    $('#modal2').toggleClass('hidden');
+
+
 }
 
 
@@ -93,6 +98,7 @@ function select() {
             $('.table tr').removeClass('active');
             $(this).addClass('active');
 
+            id = this.cells[0].innerHTML;
             document.getElementById("first-name").value = this.cells[1].innerHTML;
             document.getElementById("last-name").value = this.cells[2].innerHTML;
             document.getElementById("date").value = this.cells[3].innerHTML;
@@ -104,5 +110,14 @@ function select() {
     });
 }
 
+function clear() {
+    document.getElementById("first-name").value = "";
+    document.getElementById("last-name").value = "";
+    document.getElementById("telephone").value = null;
+    document.getElementById("IIN").value = null;
+    document.getElementById("email-address").value = "";
+    document.getElementById("date").value = null;
+    document.getElementById("street-adress").value = "";
+}
 
 

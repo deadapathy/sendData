@@ -9,18 +9,20 @@ $dbName = "test1";
 $pass = "root";
    
 $dbconn = mysqli_connect($ip, $userName, $pass, $dbName) or die("Unable to connect to DB");
-foreach($updateData as $element){
-    $sql = "UPDATE `form` SET `name` = '$element[0]',
-                              `lastName` = '$element[1]',
-                              `birthday` = '$element[2]',
-                              `IIN` = '$element[3]',
-                              `telephone` = '$element[4]',
-                              `email` = '$element[5]',
-                              `adress` = '$element[6]'";
-    
-    $query = mysqli_query($dbconn, $sql);
-    echo mysqli_error($dbconn);
-}
+
+
+
+$sql = "UPDATE form SET name = '{$updateData[0][0]}', 
+                        lastName = '{$updateData[0][1]}', 
+                        birthday = '{$updateData[0][2]}',
+                        IIN = '{$updateData[0][3]}', 
+                        telephone = '{$updateData[0][4]}', 
+                        email = '{$updateData[0][5]}',
+                        adress = '{$updateData[0][6]}' WHERE id = '{$updateData[0][7]}'"; 
+
+$query = mysqli_query($dbconn, $sql);
+echo mysqli_error($dbconn);
+
 
 
 ?>
